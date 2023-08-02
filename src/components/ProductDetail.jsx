@@ -21,15 +21,27 @@ const ProductDetail = () => {
 
   useEffect(() => {
     setProductMessage(product.name, id);
+    fbq("trackCustom", `${id}`);
   }, []);
 
   const phoneNumber = "62882008983907";
   const message = `Hello kak, Aku mau memesan ${productMessage} ${id}. Apakah masih tersedia kak?`;
 
   const handleWhatsapp = () => {
+    fbq("trackCustom", "ClickWhatsapp");
     window.open(
-      `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
+      `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+        message
+      )}`
     );
+  };
+
+  const handleShopee = () => {
+    fbq("trackCustom", "ClickShopee");
+  };
+
+  const handleTokped = () => {
+    fbq("trackCustom", "ClickTokped");
   };
 
   return (
@@ -91,7 +103,7 @@ const ProductDetail = () => {
                 <div className="w-full flex flex-col items-start justify-start mt-8 py-8 border-t gap-2 lg:gap-4 ">
                   <div className="flex flex-col gap-2 lg:gap-4">
                     <p className="text-xs text-black font-semibold">Warna</p>
-                    <div className="flex gap-4">
+                    <div className="flex flex-wrap gap-4">
                       {colors.map((color, index) => (
                         <button
                           key={index}
@@ -138,12 +150,14 @@ const ProductDetail = () => {
                         </div>
                       </div>
                       <Link
+                        onClick={handleShopee}
                         to="https://shopee.co.id/batiklaras.id?page=0&shopCollection=244805503"
                         className="text-white bg-black p-3 rounded-md hover:text-gray-300 w-2/12 z-40 flex items-center justify-center"
                       >
                         <img className="h-6" src={shopee2} alt="shopee" />
                       </Link>
                       <Link
+                        onClick={handleTokped}
                         to="https://www.tokopedia.com/batik-laras?source=universe&st=product"
                         className="text-white bg-black p-3 rounded-md hover:text-gray-300 w-2/12 z-40 flex items-center justify-center"
                       >

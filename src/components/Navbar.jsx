@@ -15,9 +15,20 @@ const Navbar = () => {
     "Hello kak, Aku mau ambil promo batiknya. Apakah masih tersedia kak?";
 
   const handleWhatsapp = () => {
+    fbq("trackCustom", "ClickWhatsapp");
     window.open(
-      `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
+      `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+        message
+      )}`
     );
+  };
+
+  const handleShopee = () => {
+    fbq("trackCustom", "ClickShopee");
+  };
+
+  const handleTokped = () => {
+    fbq("trackCustom", "ClickTokped");
   };
 
   return (
@@ -45,13 +56,19 @@ const Navbar = () => {
               </li>
               <li className="px-4 py-2 flex justify-start items-center gap-2 hover:bg-gray-100">
                 <img src={shopee} className="h-6" />
-                <Link to="https://shopee.co.id/batiklaras.id?page=0&shopCollection=244805503">
+                <Link
+                  onClick={handleShopee}
+                  to="https://shopee.co.id/batiklaras.id?page=0&shopCollection=244805503"
+                >
                   Shopee
                 </Link>
               </li>
               <li className="px-4 py-2 flex justify-start items-center gap-2 hover:bg-gray-100">
                 <img src={tokped} className="h-6" />
-                <Link to="https://www.tokopedia.com/batik-laras?source=universe&st=product">
+                <Link
+                  onClick={handleTokped}
+                  to="https://www.tokopedia.com/batik-laras?source=universe&st=product"
+                >
                   Tokopedia
                 </Link>
               </li>

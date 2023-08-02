@@ -5,6 +5,7 @@ import Features from "../components/Features";
 import KorpriSection from "../components/KorpriSection";
 import Footer from "../components/Footer";
 import NewArrivalSection from "../components/NewArrivalSection";
+import ServicesSection from "../components/ServicesSection";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <Features />
       <KorpriSection />
       <NewArrivalSection />
+      <ServicesSection />
       <Footer />
     </>
   );
